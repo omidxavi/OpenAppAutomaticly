@@ -20,7 +20,7 @@ namespace OpenAppAutomatic
     {
         private static int hour;
         private static int minute;
-        private const string configPath ="C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\ConsoleApp1\\bin\\Debug\\net6.0\\Config.csv";
+        private const string configPath ="C:\\Users\\h.nikzad\\Desktop\\RestartSmartAlgorithm\\net6.0\\Config.csv";
         static void Main(string[] args) 
         {
             //Console.WriteLine("Enter hour that you want to start");
@@ -46,14 +46,14 @@ namespace OpenAppAutomatic
         }
         private static void Run()
         {
-            foreach (var process in Process.GetProcessesByName("Calculator"))
+            foreach (var process in Process.GetProcessesByName("SmartTraderGateway"))
             {
                 process.Kill();
             }
             var lines = File.ReadAllLines(configPath);
             var openPath = lines[0].Split(",")[0];
             Console.WriteLine("Program closed successfully..........");
-            Thread.Sleep(10000);
+            Thread.Sleep(20000);
             var startInfo = new ProcessStartInfo(openPath);
             startInfo.UseShellExecute = true;
             Process.Start(startInfo);
