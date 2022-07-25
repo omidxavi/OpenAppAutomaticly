@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\ConsoleApp1\\ConsoleApp1.csproj",
-      "projectName": "ConsoleApp1",
-      "projectPath": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\OpenAppAutomatic.Agent\\OpenAppAutomatic.Agent.csproj",
+      "projectName": "OpenAppAutomatic.Agent",
+      "projectPath": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\OpenAppAutomatic.Agent\\OpenAppAutomatic.Agent.csproj",
       "packagesPath": "C:\\Users\\Omid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\ConsoleApp1\\obj\\",
+      "outputPath": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\OpenAppAutomatic.Agent\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Omid\\AppData\\Roaming\\NuGet\\NuGet.Config",
