@@ -20,66 +20,38 @@ namespace OpenAppAutomatic
     {
         private static int hour;
         private static int minute;
-        private const string configPath ="C:\\Users\\h.nikzad\\Desktop\\RestartSmartAlgorithm\\net6.0\\Config.csv";
-        static void Main(string[] args) 
+        private static string configPath = Path.Combine(Directory.GetCurrentDirectory(), "Config.csv");
+        static void Main(string[] args)
         {
-            //Console.WriteLine("Enter hour that you want to start");
-            //hour = Int32.Parse(Console.ReadLine());
-            //Console.WriteLine("Enter minute that you want to start");
-            //minute = Int32.Parse(Console.ReadLine());
+            var configs = GetProcessesFromFile();
             
             while (true)
             {
-                if (IsInTime())
+                foreach (var processConfig in configs)
                 {
-                    Console.WriteLine("ok");
-                    
-                    // Run("C:/Ems/SmartTrader/Gateway/SmartTraderGateway.exe");
-                    Run();
-                }
-                else
-                {
-                    Console.WriteLine("not in time");
-                    Thread.Sleep(TimeSpan.FromMinutes(1));
+                    if (processConfig.IsInTime())
+                    {
+                        processConfig.Run();
+                    }
+                    else
+                    {
+                        Console.WriteLine("not in time");
+                        Thread.Sleep(TimeSpan.FromMinutes(1));
+                    }
                 }
             }
         }
-        private static void Run()
+        
+        private static List<ProcessConfig> GetProcessesFromFile()
         {
-            foreach (var process in Process.GetProcessesByName("SmartTraderGateway"))
-            {
-                process.Kill();
-            }
+            var configs = new List<ProcessConfig>();
             var lines = File.ReadAllLines(configPath);
-            var openPath = lines[0].Split(",")[0];
-            Console.WriteLine("Program closed successfully..........");
-            Thread.Sleep(20000);
-            var startInfo = new ProcessStartInfo(openPath);
-            startInfo.UseShellExecute = true;
-            Process.Start(startInfo);
-            
-        }
-
-        //private static readonly TimeSpan ScheduledTime = new TimeSpan(14,39 ,0);
-        private static bool IsInTime()
-        {
-            var now = DateTime.Now.TimeOfDay;
-            now = new TimeSpan(now.Hours, now.Minutes, 0);
-            var lines = File.ReadAllLines(configPath);
-            var setTime = lines[0].Split(",")[1];
-            TimeSpan time = TimeSpan.Parse(setTime);
-            if (now == time)
+            foreach (var line in lines.Where(l => !string.IsNullOrEmpty(l)))
             {
-                return true;
-            }
-            else
-            {
-                Console.WriteLine(now);
-                return false;
-
+                configs.Add(new ProcessConfig(line));
             }
 
-           
+            return configs;
         }
     }
 }

@@ -8,26 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Omid\\.nuget\\packages\\": {}
+    "C:\\Users\\omid\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\OpenAppAutomatic.Agent\\OpenAppAutomatic.Agent.csproj",
+      "projectUniqueName": "C:\\Users\\omid\\RiderProjects\\OpenAppAutomaticly\\OpenAppAutomatic.Agent\\OpenAppAutomatic.Agent.csproj",
       "projectName": "OpenAppAutomatic.Agent",
-      "projectPath": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\OpenAppAutomatic.Agent\\OpenAppAutomatic.Agent.csproj",
-      "packagesPath": "C:\\Users\\Omid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Omid\\RiderProjects\\OpenAppAutomatic\\OpenAppAutomatic.Agent\\obj\\",
+      "projectPath": "C:\\Users\\omid\\RiderProjects\\OpenAppAutomaticly\\OpenAppAutomatic.Agent\\OpenAppAutomatic.Agent.csproj",
+      "packagesPath": "C:\\Users\\omid\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\omid\\RiderProjects\\OpenAppAutomaticly\\OpenAppAutomatic.Agent\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Omid\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\omid\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -51,7 +49,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -60,7 +59,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
