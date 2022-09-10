@@ -15,7 +15,6 @@ public class ProcessConfig
         var columns = line.Split(',');
         Title = columns[0];
         ProcessName = columns[1];
-
         var path = columns[2];
         
 
@@ -87,8 +86,24 @@ public class ProcessConfig
 
     private void RunNewProcess()
     {
-        
+        if (string.IsNullOrEmpty(Argument))
+        {
+            RunNewProcess(ExePath);
+        }
         RunNewProcess(ExePath, Argument);
-        
+    }
+
+    public void RunTest()
+    {
+        KillProcess();
+        Console.WriteLine("programs closed....");
+        Thread.Sleep(50);
+        Process start = new Process();
+        Process.GetProcessesByName("Smart");
+        start.Start();
+        Console.WriteLine("---------------");
+        Process.GetProcessesByName("Disport");
+        start.Start();
+        Console.WriteLine("opened the app...");
     }
 }
