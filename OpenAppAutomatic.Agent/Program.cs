@@ -1,57 +1,42 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.Linq.Expressions;
-using System.Net.Mime;
-using System.Timers;
-using System.Xml;
-using Timer = System.Timers.Timer;
 
 namespace OpenAppAutomatic
 {
     class Program
     {
-        private static int hour;
-        private static int minute;
-        private static string configPath = Path.Combine(Directory.GetCurrentDirectory(), "Config.csv");
+
+        private static List<ProcessConfig> _processes;
+        private static ConfigReader _configReader;
+        private static string _configPath = Path.Combine(Directory.GetCurrentDirectory(), "Config.csv");
+        private static TimeValidator _timeValidator;
+        private static ProcessHandler _processHandler;
+
         static void Main(string[] args)
         {
-            var configs = GetProcessesFromFile();
+            
+            _configReader = new ConfigReader(_configPath);
+            _timeValidator = new TimeValidator();
+            _processHandler = new ProcessHandler();
+            _processes = _configReader.Read();
             
             while (true)
             {
-                foreach (var processConfig in configs)
+                var validatedProcesses = _timeValidator.validate(_processes);
+                
+                foreach (var process in validatedProcesses)
                 {
-                    if (processConfig.IsInTime())
-                    {
-                        processConfig.Run();
-                    }
-                    else
-                    {
-                        Console.WriteLine("not in time");
-                        Thread.Sleep(TimeSpan.FromMinutes(1));
-                    }
+                    _processHandler.KillProcess(process);
                 }
-            }
-        }
-        
-        private static List<ProcessConfig> GetProcessesFromFile()
-        {
-            var configs = new List<ProcessConfig>();
-            var lines = File.ReadAllLines(configPath);
-            foreach (var line in lines.Where(l => !string.IsNullOrEmpty(l)))
-            {
-                configs.Add(new ProcessConfig(line));
-            }
+                
+                Thread.Sleep(5000);
+                
+                foreach (var process in validatedProcesses)
+                {
+                    _processHandler.RunNewProcess(process);
+                }
 
-            return configs;
+            }
         }
     }
 }
