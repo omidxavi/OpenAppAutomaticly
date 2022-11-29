@@ -1,6 +1,6 @@
 namespace OpenAppAutomatic;
 
-public class ProcessConfig
+public class ProcessConfiguration
 {
     public string Title { get; }
     public string ExePath { get; }
@@ -9,7 +9,7 @@ public class ProcessConfig
     public TimeSpan ScheduleTime { get; }
     public bool IsRunning = false;
     
-    public ProcessConfig(string title, string exePath, string argument, string processName, TimeSpan scheduleTime)
+    public ProcessConfiguration(string title, string exePath, string argument, string processName, TimeSpan scheduleTime)
     {
         Title = title;
         ExePath = exePath;

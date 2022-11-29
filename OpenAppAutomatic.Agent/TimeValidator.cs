@@ -2,9 +2,9 @@ namespace OpenAppAutomatic;
 
 public class TimeValidator
 {
-    public List<ProcessConfig> validate(List<ProcessConfig> processes)
+    public List<ProcessConfiguration> validate(List<ProcessConfiguration> processes)
     {
-        var validatedProcesses = new List<ProcessConfig>();
+        var validatedProcesses = new List<ProcessConfiguration>();
         
         foreach (var process in processes)
         {
@@ -19,7 +19,7 @@ public class TimeValidator
     }
 
 
-    private bool IsValid(ProcessConfig process)
+    private bool IsValid(ProcessConfiguration process)
     {
         var now = DateTime.Now.TimeOfDay;
         now = new TimeSpan(now.Hours, now.Minutes, 0);

@@ -1,10 +1,11 @@
 using System.Diagnostics;
+using Serilog;
 
 namespace OpenAppAutomatic;
 
 public class ProcessHandler
 {
-    public void RunNewProcess(ProcessConfig processConfig)
+    public void RunNewProcess(ProcessConfiguration processConfig)
     {
         var startInfo = new ProcessStartInfo(processConfig.ExePath, processConfig.Argument)
         {
@@ -12,15 +13,15 @@ public class ProcessHandler
         };
         Process.Start(startInfo);
         
-        Console.WriteLine("Process Run Successfully");
+        Log.Information("Process Run Successfully");
     }
 
-    public void KillProcess(ProcessConfig processConfig)
+    public void KillProcess(ProcessConfiguration processConfig)
     {
         foreach (var process in Process.GetProcessesByName(processConfig.ProcessName))
         {
             process.Kill();
         }
+        Log.Information("Process Has Been Closed");
     }
-
 }

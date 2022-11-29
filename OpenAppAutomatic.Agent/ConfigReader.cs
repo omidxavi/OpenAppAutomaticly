@@ -9,9 +9,9 @@ public class ConfigReader
         _configRoot = configRoot;
     }
 
-    public List<ProcessConfig> Read()
+    public List<ProcessConfiguration> Read()
     {
-        var configs = new List<ProcessConfig>();
+        var configs = new List<ProcessConfiguration>();
         var configLines = File.ReadAllLines(_configRoot);
         foreach (var line in configLines.Where(l => !string.IsNullOrEmpty(l)))
         {
@@ -21,7 +21,7 @@ public class ConfigReader
         return configs;
     }
     
-    private ProcessConfig GetDataFromCsv(string csvLine)
+    private ProcessConfiguration GetDataFromCsv(string csvLine)
     {
         var columns = csvLine.Split(',');
         var title = columns[0];
@@ -31,6 +31,6 @@ public class ConfigReader
         var timeString = columns[4];
         var scheduleTime = TimeSpan.Parse(timeString);
 
-        return new ProcessConfig(title, execPath, argument, processName, scheduleTime);
+        return new ProcessConfiguration(title, execPath, argument, processName, scheduleTime);
     }
 }
