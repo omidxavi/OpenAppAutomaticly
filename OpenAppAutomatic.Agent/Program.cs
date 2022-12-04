@@ -8,7 +8,6 @@ namespace OpenAppAutomatic
 {
     class Program
     {
-
         private static List<ProcessConfiguration> _processes;
         private static ConfigReader _configReader;
         private static string _configPath = Path.Combine(Directory.GetCurrentDirectory(), "Config.csv");
@@ -22,35 +21,32 @@ namespace OpenAppAutomatic
             _timeValidator = new TimeValidator();
             _processHandler = new ProcessHandler();
             _processes = _configReader.Read();
-            
+
             while (true)
             {
                 try
                 {
                     var validatedProcesses = _timeValidator.validate(_processes);
-                
+
                     foreach (var process in validatedProcesses)
                     {
                         _processHandler.KillProcess(process);
                     }
-                
+
                     Thread.Sleep(5000);
-                
+
                     foreach (var process in validatedProcesses)
                     {
                         _processHandler.RunNewProcess(process);
                     }
-
-
                 }
                 catch (Exception e)
                 {
                     Log.Information("{Error :}", e.Message);
                 }
-
             }
         }
-        
+
         private static void ConfigApplication()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -64,7 +60,7 @@ namespace OpenAppAutomatic
 
             ConfigLogging(configuration);
         }
-        
+
         private static void ConfigLogging(IConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration()
